@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Banana1
+  annotations:
+    github.com/project-slug: backstage-test-42/Banana1
+spec:
+  type: other
+  lifecycle: unknown
+  owner: new-team

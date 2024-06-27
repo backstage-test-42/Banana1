@@ -9,3 +9,15 @@ spec:
     picture: https://blah.com/fname
   memberOf:
     - new-team
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+   namespace: default
+   name: new-team
+spec:
+   type: team
+   profile:
+      displayName: new-team
+   children: []
+   parent: new-team

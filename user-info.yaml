@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  namespace: default
+  name: fname
+spec:
+  profile:
+    displayName: Fname Lname
+    picture: https://blah.com/fname
+  memberOf:
+    - new-team

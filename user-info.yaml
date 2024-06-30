@@ -1,23 +1,292 @@
+######################################################################################## Team definitioms
 apiVersion: backstage.io/v1alpha1
-kind: User
+kind: Group
 metadata:
-  namespace: default
-  name: fname
+   namespace: default
+   name: governance
 spec:
-  profile:
-    displayName: Fname Lname
-    picture: https://blah.com/fname
-  memberOf:
-    - new-team
+   type: team
+   profile:
+      displayName: governance
+   children: []
+   parent: governance
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
    namespace: default
-   name: new-team
+   name: infrastructure
 spec:
    type: team
    profile:
-      displayName: new-team
+      displayName: infrastructure
    children: []
-   parent: new-team
+   parent: infrastructure
+---
+################################################################################# User definitions
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  namespace: default
+  name: tal
+spec:
+  profile:
+    displayName: tal tal
+    picture: https://blah.com/fname
+  memberOf:
+    - governance
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  namespace: default
+  name: lior
+spec:
+  profile:
+    displayName: lior lior
+    picture: https://blah.com/fname
+  memberOf:
+    - governance
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  namespace: default
+  name: moti
+spec:
+  profile:
+    displayName: moti moti
+    picture: https://blah.com/fname
+  memberOf:
+    - infrastructure
+---
+################################################################################# Domain (application group) definitions
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: governance-domain
+  description: Everything related to governance
+  title: governance-domain
+  links:
+    - url: http://example.com/domain/artists/
+      title: Domain Readme
+    - url: http://example.com/domains/artists/dashboard
+      title: Domain Metrics Dashboard
+      icon: dashboard
+spec:
+  owner: governance
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: infrastructure-domain
+  description: Everything related to infrastructure
+  title: infrastructure-domain
+  links:
+    - url: http://example.com/domain/artists/
+      title: Domain Readme
+    - url: http://example.com/domains/artists/dashboard
+      title: Domain Metrics Dashboard
+      icon: dashboard
+spec:
+  owner: infrastructure
+---
+############################################################################ System (application) definitions
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: funnel
+  description: Everything related to funnel
+  tags:
+    - portal
+spec:
+  owner: governance
+  domain: governance-domain
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: lifecycle
+  description: Everything related to lifecycle
+  tags:
+    - portal
+spec:
+  owner: governance
+  domain: governance-domain
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: git
+  description: Everything related to git
+  tags:
+    - portal
+spec:
+  owner: infrastructure
+  domain: infrastructure-domain
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: profile-calculation
+  description: Everything related to profile calculation
+  tags:
+    - portal
+spec:
+  owner: infrastructure
+  domain: infrastructure-domain
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: gateway
+  description: Everything related to gateway (independent)
+  tags:
+    - portal
+spec:
+  owner: infrastructure
+---
+###################################################################### Component (repository) definitions
+###################################################################### Reminder to add tags
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: funnel-backend
+  description: Funnel Backend
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: governance
+  system: funnel
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: funnel-frontend
+  description: Funnel Frontend
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: governance
+  system: funnel
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: lifecycle-stuff
+  description: Lifecycle Stuff
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: governance
+  system: lifecycle
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: git-listener
+  description: Git Listener
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure
+  system: git
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: git-snap
+  description: Git Snap
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure
+  system: git
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: profile-calculator
+  description: Profile Calculator
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure
+  system: profile-calculaאןםמ
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: gateway-service
+  description: Gateway Service
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure
+  system: gateway
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: non-existant-in-system
+  description: Does not exist but is in a system
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure
+  system: git
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: no-exist-at-all
+  description: Does not exist at all
+  labels:
+    goVersion: go1.15.3
+    category: music
+  tags:
+    - go
+spec:
+  type: service
+  lifecycle: production
+  owner: infrastructure

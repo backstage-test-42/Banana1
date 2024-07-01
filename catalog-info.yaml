@@ -96,7 +96,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: funnel
-  description: Everything related to funnel
+  description: Everything related to funnel - lablblala
   tags:
     - portal
 spec:

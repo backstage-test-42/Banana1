@@ -1,4 +1,16 @@
-######################################################################################## Team definitioms
+######################################################################################## Team definitions
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+   namespace: default
+   name: rnd
+spec:
+   type: team
+   profile:
+      displayName: rnd
+   children: []
+   parent: rnd
+---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
@@ -9,7 +21,7 @@ spec:
    profile:
       displayName: governance
    children: []
-   parent: governance
+   parent: rnd
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
@@ -21,7 +33,7 @@ spec:
    profile:
       displayName: infrastructure
    children: []
-   parent: infrastructure
+   parent: rnd
 ---
 ################################################################################# User definitions
 apiVersion: backstage.io/v1alpha1

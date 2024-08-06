@@ -122,7 +122,7 @@ metadata:
   name: lifecycle
   description: Everything related to lifecycle
   tags:
-    - portal 2
+    - portal-2
 spec:
   owner: governance
   domain: governance-domain

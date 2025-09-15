@@ -108,10 +108,10 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: funnel
-  description: Everything related to funnel - lablblala
+  description: Everything related to funnel
   tags:
     - portal
-    - banana
+    - funnel
 spec:
   owner: governance
   domain: governance-domain
